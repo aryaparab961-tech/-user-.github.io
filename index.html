@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Game Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎮 Bubble Click Game</h1>
+
+<p>Click the bubbles before they disappear!</p>
+
+<h2>Score: <span id="score">0</span></h2>
+
+<div id="gameArea"></div>
+
+<script>
+let score = 0;
+
+function createBubble() {
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+
+    // Random position
+    bubble.style.left = Math.random() * window.innerWidth + "px";
+    bubble.style.top = Math.random() * window.innerHeight + "px";
+
+    // Click event
+    bubble.onclick = function () {
+        score++;
+        document.getElementById("score").innerText = score;
+        bubble.remove();
+    };
+
+    document.body.appendChild(bubble);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        bubble.remove();
+    }, 3000);
+}
+
+// Create bubbles continuously
+setInterval(createBubble, 700);
+</script>
+
+</body>
+</html>
